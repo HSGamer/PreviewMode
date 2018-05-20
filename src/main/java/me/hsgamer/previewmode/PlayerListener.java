@@ -22,12 +22,16 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
-        e.getPlayer().setGameMode(GameMode.SPECTATOR);
+        if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
+            e.getPlayer().setGameMode(GameMode.SPECTATOR);
+        }
     }
 
     @EventHandler
     public void onChangeWorld(PlayerChangedWorldEvent e) {
-        e.getPlayer().setGameMode(GameMode.SPECTATOR);
+        if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
+            e.getPlayer().setGameMode(GameMode.SPECTATOR);
+        }
     }
 
 }
