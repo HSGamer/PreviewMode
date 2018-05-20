@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PreviewMode extends JavaPlugin implements Listener {
 
-    public boolean IsEnabled;
+    private boolean IsEnabled;
 
     @Override
     public void onEnable() {
@@ -14,8 +14,12 @@ public final class PreviewMode extends JavaPlugin implements Listener {
         this.saveDefaultConfig();
         IsEnabled = this.getConfig().getBoolean("enabled");
 
-        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Preview Mode has beed Enabled");
+        if (IsEnabled) {
+            getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Preview Mode has beed Enabled");
+        } else {
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "PreviewMode is disabled. This plugin is useless now");
+        }
 
     }
 
