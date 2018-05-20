@@ -4,6 +4,7 @@ import fr.xephi.authme.events.LoginEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -20,14 +21,14 @@ public class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onRespawn(PlayerRespawnEvent e) {
         if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onChangeWorld(PlayerChangedWorldEvent e) {
         if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
