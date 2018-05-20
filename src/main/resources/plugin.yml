@@ -1,0 +1,10 @@
+name: PreviewMode
+version: ${project.version}
+main: me.hsgamer.previewmode.PreviewMode
+depend: [AuthMe]
+authors: [HSGamer]
+description: Spectate the server while staff is working
+
+permissions:
+  previewmode.bypass:
+    description: Bypass the Preview Mode
