@@ -21,14 +21,14 @@ public class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onRespawn(PlayerRespawnEvent e) {
         if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChangeWorld(PlayerChangedWorldEvent e) {
         if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
