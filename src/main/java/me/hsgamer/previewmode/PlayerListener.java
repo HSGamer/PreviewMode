@@ -1,6 +1,7 @@
 package me.hsgamer.previewmode;
 
 import fr.xephi.authme.events.LoginEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
@@ -21,18 +22,32 @@ public class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onRespawn(PlayerRespawnEvent e) {
-        if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
-            e.getPlayer().setGameMode(GameMode.SPECTATOR);
-        }
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("PreviewMode"), new Runnable() {
+
+            @Override
+            public void run() {
+                if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
+                    e.getPlayer().setGameMode(GameMode.SPECTATOR);
+                }
+
+            }
+        }, 7L);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onChangeWorld(PlayerChangedWorldEvent e) {
-        if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
-            e.getPlayer().setGameMode(GameMode.SPECTATOR);
-        }
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("PreviewMode"), new Runnable() {
+
+            @Override
+            public void run() {
+                if (!(e.getPlayer().hasPermission("previewmode.bypass") || e.getPlayer().isOp())) {
+                    e.getPlayer().setGameMode(GameMode.SPECTATOR);
+                }
+
+            }
+        }, 7L);
     }
 
 }
